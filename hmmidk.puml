@@ -1,0 +1,224 @@
+@startuml
+class com.mygdx.game.TextView {
+- BitmapFont font
+- String text
++ void setText(String)
++ void draw(SpriteBatch)
++ void dispose()
+}
+
+
+class com.mygdx.game.ShipObject {
+~ long lastShotTime
+~ short cBits
+~ int livesLeft
++ void hit()
++ boolean isAlive()
++ Body createBody(float,float,World)
+- void putInFrame()
++ void move(Vector3)
++ void draw(SpriteBatch)
++ boolean needToShoot()
++ boolean hasToBeDestroyed()
++ int getLiveLeft()
+}
+
+
+class com.mygdx.game.ContactManager {
+~ World world
+}
+
+class com.mygdx.game.GameSettings {
++ {static} int TRASH_WIDTH
++ {static} int TRASH_HEIGHT
++ {static} int TRASH_VELOCITY
++ {static} int BULLET_VELOCITY
++ {static} int STARTING_TRASH_APPEARANCE_COOL_DOWN
+~ {static} int SHOOTING_COOL_DOWN
++ {static} int SCR_WIDTH
++ {static} int SCR_HEIGHT
++ {static} int SHIP_WIDTH
++ {static} int BULLET_WIDTH
++ {static} int BULLET_HEIGHT
++ {static} short TRASH_BIT
++ {static} short SHIP_BIT
++ {static} short BULLET_BIT
++ {static} int SHIP_HEIGHT
++ {static} int SHIP_FORCE_RATIO
+}
+
+class com.mygdx.game.GameSession {
+~ long sessionStartTime
+~ long nextTrashSpawnTime
++ void startGame()
++ boolean shouldSpawnTrash()
+- float getTrashPeriodCoolDown()
+}
+
+
+class com.mygdx.game.TrashObject {
+- int livesLeft
+- {static} int paddingHorizontal
+~ int x
+~ int y
++ boolean isInFrame()
++ void hit()
++ boolean isAlive()
+}
+
+
+class com.mygdx.game.FontBuilder {
+~ int size
+~ Color color
+~ BitmapFont font
+~ BitmapFont getFont()
+}
+
+
+class com.mygdx.game.GameResources {
++ {static} String SHIP_IMG_PATH
++ {static} String TRASH_IMG_PATH
++ {static} String BULLET_IMG_PATH
++ {static} String BACKGROUND_IMG_PATH
++ {static} String BLACKOUT_TOP_IMG_PATH
++ {static} String PAUSE_IMG_PATH
++ {static} String LIVE_IMG_PATH
+}
+
+class com.mygdx.game.GameObject {
+~ int width
+~ int height
+~ Texture texture
+~ Texture img
+~ Body body
++ short cBits
++ int livesLeft
++ {static} float SCALE
++ void hit()
+~ Body createBody(float,float,World)
++ void draw(SpriteBatch)
++ int getX()
++ int getY()
++ void setX(int)
++ void setY(int)
++ void dispose()
+}
+
+
+class com.mygdx.game.GameScreen {
+~ ArrayList<TrashObject> trashArray
+~ ArrayList<BulletObject> bulletArray
+~ {static} MyGdxGame myGdxGame
+~ GameSession gameSession
+~ ShipObject shipObject
+~ ContactManager contactManager
+~ MovingBackgroundView backgroundView
+~ LiveView liveView
+~ ButtonView pauseButton
+~ ImageView topBlackoutView
++ void render(float)
+- void handleInput()
+- void draw()
+- void updateTrash()
+- void updateBullet()
+}
+
+
+class com.mygdx.game.ImageView {
+~ Texture texture
+~ int width
+~ int height
++ void draw(SpriteBatch)
++ void dispose()
+}
+
+
+class com.mygdx.game.BulletObject {
+~ boolean wasHit
++ boolean hasToBeDestroyed()
++ void hit()
+}
+
+
+class com.mygdx.game.View {
+~ float x
+~ float y
+~ float width
+~ float height
++ boolean isHit(float,float)
++ void draw(SpriteBatch)
++ void dispose()
+}
+
+
+class com.mygdx.game.ButtonView {
+~ Texture texture
+~ BitmapFont bitmapFont
+~ String text
+~ float textX
+~ float textY
++ void draw(SpriteBatch)
++ void dispose()
+}
+
+
+class com.mygdx.game.MyGdxGame {
+~ SpriteBatch batch
+~ int width
+~ int height
+~ Texture texture
+~ Texture img
++ World world
+~ float accumulator
++ {static} float STEP_TIME
++ {static} int VELOCITY_ITERATIONS
++ {static} int POSITION_ITERATIONS
+~ OrthographicCamera camera
++ Vector3 touch
+~ ShipObject ship
+~ GameScreen gameScreen
+~ GameSession gameSession
+~ TextView scoreTextView
+~ ButtonView pauseButton
+~ float delta
++ void create()
++ void stepWorld()
++ void render()
++ void dispose()
+}
+
+
+class com.mygdx.game.LiveView {
+~ Texture texture
+~ int livePadding
+~ int leftLives
++ void setLeftLives(int)
++ void draw(SpriteBatch)
+}
+
+
+class com.mygdx.game.MovingBackgroundView {
+~ Texture texture
+~ int texture1Y
+~ int texture2Y
+~ int speed
++ void move()
++ void draw(SpriteBatch)
++ void dispose()
+}
+
+
+
+
+com.mygdx.game.View <|-- com.mygdx.game.TextView
+com.mygdx.game.GameObject <|-- com.mygdx.game.ShipObject
+com.mygdx.game.GameObject <|-- com.mygdx.game.TrashObject
+com.badlogic.gdx.ScreenAdapter <|-- com.mygdx.game.GameScreen
+com.mygdx.game.View <|-- com.mygdx.game.ImageView
+com.mygdx.game.GameObject <|-- com.mygdx.game.BulletObject
+com.badlogic.gdx.utils.Disposable <|.. com.mygdx.game.View
+com.mygdx.game.View <|-- com.mygdx.game.ButtonView
+com.badlogic.gdx.ApplicationAdapter <|-- com.mygdx.game.MyGdxGame
+com.mygdx.game.View <|-- com.mygdx.game.LiveView
+com.mygdx.game.View <|-- com.mygdx.game.MovingBackgroundView
+@enduml
