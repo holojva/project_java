@@ -17,11 +17,11 @@ import java.awt.Font;
 public class MenuScreen extends ScreenAdapter {
     TextView titleView;
     MyGdxGame myGdxGame;
-
     MovingBackgroundView backgroundView;
     ButtonView startButtonView;
     ButtonView settingsButtonView;
     ButtonView exitButtonView;
+    ButtonView smallButtonView;
 
     public MenuScreen(MyGdxGame myGdxGame) {
         this.myGdxGame = myGdxGame;
@@ -34,6 +34,7 @@ public class MenuScreen extends ScreenAdapter {
         startButtonView = new ButtonView(140, 646, 440, 70, myGdxGame.commonBlackFont, GameResources.BUTTON_IMG_PATH, "start");
         settingsButtonView = new ButtonView(140, 551, 440, 70,  myGdxGame.commonBlackFont, GameResources.BUTTON_IMG_PATH, "settings");
         exitButtonView = new ButtonView(140, 456, 440, 70,  myGdxGame.commonBlackFont, GameResources.BUTTON_IMG_PATH, "exit");
+        smallButtonView = new ButtonView(100, 100, 10, 10,  GameResources.BUTTON_IMG_PATH);
     }
     @Override
     public void render(float delta) {
@@ -45,6 +46,8 @@ public class MenuScreen extends ScreenAdapter {
         myGdxGame.batch.begin();
 
         backgroundView.draw(myGdxGame.batch);
+        smallButtonView.draw(myGdxGame.batch);
+
         titleView.draw(myGdxGame.batch);
         exitButtonView.draw(myGdxGame.batch);
         settingsButtonView.draw(myGdxGame.batch);
@@ -66,6 +69,9 @@ public class MenuScreen extends ScreenAdapter {
             }
             if (settingsButtonView.isHit(myGdxGame.touch.x, myGdxGame.touch.y)) {
                 myGdxGame.setScreen(myGdxGame.settingsScreen);
+            }
+            if (smallButtonView.isHit(myGdxGame.touch.x, myGdxGame.touch.y)) {
+                myGdxGame.audio.buttonClicked();
             }
         }
     }

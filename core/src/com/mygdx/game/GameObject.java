@@ -22,6 +22,7 @@ public class GameObject {
 	public short cBits;
 	public int livesLeft;
 	public static final float SCALE = 0.05f;
+	String type;
 	GameObject() {}
 	GameObject(String texturePath, int x, int y, int width, int height, short cBits, World world) {
 		this.width = width;
@@ -29,6 +30,7 @@ public class GameObject {
 		texture = new Texture(texturePath);
 		body = createBody(x, y, world);
 		this.cBits = cBits;
+		this.type = "other";
 	}
 	public void hit() {}
 	Body createBody(float x, float y, World world) {

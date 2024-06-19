@@ -22,11 +22,12 @@ public class ShipObject extends GameObject {
     long lastShotTime;
     short cBits;
     int livesLeft;
-
+    String type;
     public ShipObject(String texturePath, int x, int y, int width, int height, short cBits, World world) {
         super(texturePath, x, y, width, height, GameSettings.SHIP_BIT, world);
         body.setLinearDamping(10);
         livesLeft = 3;
+        type = "ship";
     }
     @Override
     public void hit() {

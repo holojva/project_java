@@ -6,6 +6,7 @@ import com.badlogic.gdx.audio.Sound;
 public class AudioManager {
     public Music backgroundMenuMusic;
     public Music backgroundGameMusic;
+    public Music secretBackgroundMenuMusic;
     public Sound shootSound;
     public Sound explosionSound;
     public boolean isSoundOn;
@@ -16,6 +17,7 @@ public class AudioManager {
         explosionSound = Gdx.audio.newSound(Gdx.files.internal(GameResources.DESTROY_SOUND_PATH));
         backgroundGameMusic = Gdx.audio.newMusic(Gdx.files.internal(GameResources.GAME_BACKGROUND_MUSIC_PATH));
         backgroundMenuMusic = Gdx.audio.newMusic(Gdx.files.internal(GameResources.MENU_BACKGROUND_MUSIC_PATH));
+        secretBackgroundMenuMusic = Gdx.audio.newMusic(Gdx.files.internal(GameResources.SECRET_MENU_BACKGROUND_MUSIC_PATH));
         isMusicOn = true;
         isSoundOn = true;
         backgroundGameMusic.setVolume(0.2f);
@@ -39,6 +41,11 @@ public class AudioManager {
             backgroundMenuMusic.stop();
             backgroundGameMusic.play();
         }
+    }
+    public void buttonClicked() {
+        backgroundGameMusic.stop();
+        backgroundMenuMusic.stop();
+        secretBackgroundMenuMusic.play();
     }
     public void startMenu() {
         if (isMusicOn)  {

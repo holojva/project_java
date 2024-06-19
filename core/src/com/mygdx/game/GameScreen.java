@@ -107,7 +107,7 @@ public class GameScreen extends ScreenAdapter {
                     TrashObject trashObject = new TrashObject(
                             GameSettings.TRASH_WIDTH, GameSettings.TRASH_HEIGHT,
                             GameResources.TRASH_IMG_PATH, TRASH_BIT,
-                            myGdxGame.world, "trash"
+                            myGdxGame.world, "trash", 1
                     );
                     trashArray.add(trashObject);
                 }
@@ -115,14 +115,14 @@ public class GameScreen extends ScreenAdapter {
                     TrashObject trashObject = new TrashObject(
                             GameSettings.TRASH_WIDTH, GameSettings.TRASH_HEIGHT,
                             GameResources.BONUS_IMG_PATH, TRASH_BIT,
-                            myGdxGame.world, "bonus"
+                            myGdxGame.world, "bonus", 1
                     );
                     trashArray.add(trashObject);
                 } else {
                     TrashObject trashObject = new TrashObject(
                             GameSettings.TRASH_WIDTH*2, GameSettings.TRASH_HEIGHT*2,
                             GameResources.BOSS_IMG_PATH, TRASH_BIT,
-                            myGdxGame.world, "boss"
+                            myGdxGame.world, "boss", 3
                     );
                     trashArray.add(trashObject);
                 }

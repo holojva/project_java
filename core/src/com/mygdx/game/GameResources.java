@@ -13,6 +13,7 @@ public class GameResources {
     public static final String PAUSE_BACKGROUND_IMG_PATH = "textures/pause_background.png";
     public static final String LIVE_IMG_PATH = "textures/heart.png";
     public static final String MENU_BACKGROUND_MUSIC_PATH = "sounds/background_menu.mp3";
+    public static final String SECRET_MENU_BACKGROUND_MUSIC_PATH = "sounds/secret_background_menu.mp3";
     public static final String FONT_PATH = "fonts/montserrat-bold.ttf";
     public static final String GAME_BACKGROUND_MUSIC_PATH = "sounds/background_game.mp3";
     public static final String SHOOT_SOUND_PATH = "C:/Users/dadoc/Downloads/SpaceProject/assets/sounds/shoot.mp3";

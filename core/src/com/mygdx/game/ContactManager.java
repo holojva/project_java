@@ -31,8 +31,39 @@ public class ContactManager {
                         || cDef2 == GameSettings.TRASH_BIT && cDef == GameSettings.BULLET_BIT
                         || cDef == GameSettings.TRASH_BIT && cDef2 == GameSettings.SHIP_BIT
                         || cDef2 == GameSettings.TRASH_BIT && cDef == GameSettings.SHIP_BIT){
-                    ((GameObject) fixA.getUserData()).hit();
-                    ((GameObject) fixB.getUserData()).hit();
+                    if (((GameObject) fixA.getUserData()).type=="boss") {
+                        System.out.println("boom");
+                        ((GameObject) fixA.getUserData()).hit();
+                        for (int i = 0; i<3; i++) {
+                            ((GameObject) fixB.getUserData()).hit();
+                        }
+                    }
+                    if (((GameObject) fixB.getUserData()).type=="boss") {
+                        System.out.println("boom");
+                        ((GameObject) fixB.getUserData()).hit();
+                        for (int i = 0; i<3; i++) {
+                            ((GameObject) fixA.getUserData()).hit();
+                        }
+                    }
+                    if (((GameObject) fixA.getUserData()).type=="bonus") {
+                        System.out.println("boom");
+                        ((GameObject) fixA.getUserData()).hit();
+                        if (((GameObject) fixB.getUserData()).livesLeft < 3) {
+                            ((GameObject) fixB.getUserData()).livesLeft++;
+                        }
+                    }
+                    if (((GameObject) fixB.getUserData()).type=="bonus") {
+                        System.out.println("boom");
+                        ((GameObject) fixB.getUserData()).hit();
+                        if (((GameObject) fixA.getUserData()).livesLeft < 3) {
+                            ((GameObject) fixA.getUserData()).livesLeft++;
+                        }
+                    }
+                    else {
+                        ((GameObject) fixA.getUserData()).hit();
+                        ((GameObject) fixB.getUserData()).hit();
+                    }
+
                 }
             }
 
