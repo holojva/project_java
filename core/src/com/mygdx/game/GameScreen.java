@@ -102,7 +102,7 @@ public class GameScreen extends ScreenAdapter {
             }
 
             if (gameSession.shouldSpawnTrash()) {
-                int randNum = rand.nextInt(40);
+                int randNum = rand.nextInt(80);
                 if (randNum >= 10) {
                     TrashObject trashObject = new TrashObject(
                             GameSettings.TRASH_WIDTH, GameSettings.TRASH_HEIGHT,
@@ -111,7 +111,7 @@ public class GameScreen extends ScreenAdapter {
                     );
                     trashArray.add(trashObject);
                 }
-                else if (randNum>4) {
+                else if (randNum>5) {
                     TrashObject trashObject = new TrashObject(
                             GameSettings.TRASH_WIDTH, GameSettings.TRASH_HEIGHT,
                             GameResources.BONUS_IMG_PATH, TRASH_BIT,
